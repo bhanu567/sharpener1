@@ -20,7 +20,7 @@ forms.addEventListener("submit", () => {
 
   //adding cookie and their deletion time
   document.cookie = "name = Bhanu";
-  
+
   document.cookie = "name = " + nam + "  " + new Date(2024, 5, 1).toUTCString();
 
   document.cookie = "name = Bhanu  " + new Date(2024, 5, 1).toUTCString();
@@ -36,3 +36,21 @@ setTimeout(() => {
   localStorage.removeItem("email");
   console.log(localStorage.getItem("nam"));
 }, 6000);
+
+//storing objects
+let myObj = {
+  nam : "Bhanu",
+  age : 24
+};
+
+//since, localStorage can only store the strings not number or booleans. So, Converting to Strings
+let myObj_serialized = JSON.stringify(myObj);
+
+//storing
+localStorage.setItem("myObj", myObj_serialized);
+
+//converting strings to objects
+let myObj_deserailized = JSON.parse(localStorage.getItem("myObj"));
+
+console.log(myObj_deserailized);
+
