@@ -20,7 +20,6 @@ forms.addEventListener("submit", () => {
 
   //Adding delete Button
   var button = document.createElement("button");
-  button.id="btn";
   button.innerHTML = "DELETE";
   lists.innerText = `${nam} - ${email} - ${phone}`;
   lists.appendChild(button);
@@ -32,5 +31,21 @@ forms.addEventListener("submit", () => {
     button.parentElement.parentElement.remove();
     localStorage.removeItem(email);
   })
+
+  //Adding Edit Button
+  var Edit = document.createElement("button");
+  lists.appendChild(Edit);
+  Edit.innerHTML = "EDIT";
+
+  //Adding Edit Functionality
+  Edit.addEventListener("click", () =>{
+    document.getElementsByTagName("input")[0].value = nam;
+    document.getElementsByTagName("input")[1].value = email;
+    document.getElementsByTagName("input")[2].value = phone;
+    localStorage.removeItem(email);
+    Edit.parentElement.parentElement.remove();
+  })
+
+
 });
 
