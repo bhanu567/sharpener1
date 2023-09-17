@@ -17,7 +17,20 @@ forms.addEventListener("submit", () => {
 
   var list = document.createElement("ul");
   var lists = document.createElement("li");
+
+  //Adding delete Button
+  var button = document.createElement("button");
+  button.id="btn";
+  button.innerHTML = "DELETE";
   lists.innerText = `${nam} - ${email} - ${phone}`;
+  lists.appendChild(button);
   list.appendChild(lists);
   document.getElementById("x1").appendChild(list);
+
+  //Adding Delete Functionality
+  button.addEventListener("click", (e) => {
+    button.parentElement.parentElement.remove();
+    localStorage.removeItem(email);
+  })
 });
+
