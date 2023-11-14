@@ -1,3 +1,5 @@
+//Storing as a key value pair of different field
+
 var forms = document.getElementById("valueFrom");
 
 forms.addEventListener("submit", () => {
@@ -39,8 +41,8 @@ setTimeout(() => {
 
 //storing objects
 let myObj = {
-  nam : "Bhanu",
-  age : 24
+  nam: "Bhanu",
+  age: 24,
 };
 
 //since, localStorage can only store the strings not number or booleans. So, Converting to Strings
@@ -53,4 +55,3 @@ localStorage.setItem("myObj", myObj_serialized);
 let myObj_deserailized = JSON.parse(localStorage.getItem("myObj"));
 
 console.log(myObj_deserailized);
-

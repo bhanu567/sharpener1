@@ -1,3 +1,5 @@
+//Storing as a object of different field with one more field phone
+
 var forms = document.getElementById("valueFrom");
 
 forms.addEventListener("submit", () => {
@@ -30,7 +32,7 @@ forms.addEventListener("submit", () => {
   button.addEventListener("click", (e) => {
     button.parentElement.parentElement.remove();
     localStorage.removeItem(email);
-  })
+  });
 
   //Adding Edit Button
   var Edit = document.createElement("button");
@@ -38,14 +40,11 @@ forms.addEventListener("submit", () => {
   Edit.innerHTML = "EDIT";
 
   //Adding Edit Functionality
-  Edit.addEventListener("click", () =>{
+  Edit.addEventListener("click", () => {
     document.getElementsByTagName("input")[0].value = nam;
     document.getElementsByTagName("input")[1].value = email;
     document.getElementsByTagName("input")[2].value = phone;
     localStorage.removeItem(email);
     Edit.parentElement.parentElement.remove();
-  })
-
-
+  });
 });
-
