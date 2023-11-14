@@ -14,37 +14,56 @@ forms.addEventListener("submit", () => {
     phonenumber: phone,
   };
 
-  let myObj_serialized = JSON.stringify(myObj);
-  localStorage.setItem(email, myObj_serialized);
+  // showData(myObj);
 
+  axios
+    .post(
+      "https://crudcrud.com/api/854bc74b8a2549ba8889bc7a96c7c9/registrationlist",
+      myObj
+    )
+    .then((res) => {
+      let myObj = {
+        name: res.data.name,
+        email: res.data.email,
+        phonenumber: res.data.phonenumber,
+      };
+      showData(myObj);
+    }).catch((err)=>{
+      x1.innerHTML = x1.innerHTML + "<h4>Something Went Wrong</h4>";
+    })
+});
+
+function showData(myObj) {
+  let myObj_serialized = JSON.stringify(myObj);
+  localStorage.setItem(myObj.email, myObj_serialized);
   var list = document.createElement("ul");
   var lists = document.createElement("li");
 
   //Adding delete Button
-  var button = document.createElement("button");
-  button.innerHTML = "DELETE";
-  lists.innerText = `${nam} - ${email} - ${phone}`;
-  lists.appendChild(button);
+  var del = document.createElement("button");
+  del.innerHTML = "DELETE";
+  lists.innerText = `${myObj.name} - ${myObj.email} - ${myObj.phonenumber}`;
+  lists.appendChild(del);
   list.appendChild(lists);
   document.getElementById("x1").appendChild(list);
-
-  //Adding Delete Functionality
-  button.addEventListener("click", (e) => {
-    button.parentElement.parentElement.remove();
-    localStorage.removeItem(email);
-  });
 
   //Adding Edit Button
   var Edit = document.createElement("button");
   lists.appendChild(Edit);
   Edit.innerHTML = "EDIT";
 
+  //Adding Delete Functionality
+  del.addEventListener("click", () => {
+    del.parentElement.parentElement.remove();
+    localStorage.removeItem(myObj.email);
+  });
+
   //Adding Edit Functionality
   Edit.addEventListener("click", () => {
-    document.getElementsByTagName("input")[0].value = nam;
-    document.getElementsByTagName("input")[1].value = email;
-    document.getElementsByTagName("input")[2].value = phone;
-    localStorage.removeItem(email);
+    document.getElementsByTagName("input")[0].value = myObj.name;
+    document.getElementsByTagName("input")[1].value = myObj.email;
+    document.getElementsByTagName("input")[2].value = myObj.phonenumber;
+    localStorage.removeItem(myObj.email);
     Edit.parentElement.parentElement.remove();
   });
-});
+}
