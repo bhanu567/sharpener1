@@ -18,7 +18,7 @@ forms.addEventListener("submit", () => {
 
   axios
     .post(
-      "https://crudcrud.com/api/854bc74b8a2549ba8889bc7a96c7c9/registrationlist",
+      "https://crudcrud.com/api/531c0e32b38243ecbaecf4196816cfec/registrationlist",
       myObj
     )
     .then((res) => {
@@ -28,9 +28,25 @@ forms.addEventListener("submit", () => {
         phonenumber: res.data.phonenumber,
       };
       showData(myObj);
-    }).catch((err)=>{
-      x1.innerHTML = x1.innerHTML + "<h4>Something Went Wrong</h4>";
     })
+    .catch((err) => {
+      x1.innerHTML = x1.innerHTML + "<h4>Something Went Wrong</h4>";
+    });
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  axios
+    .get(
+      "https://crudcrud.com/api/531c0e32b38243ecbaecf4196816cfec/registrationlist"
+    )
+    .then((r) => {
+      for (let index = 0; index < r.data.length; index++) {
+        showData(r.data[index]);
+      }
+    })
+    .catch((e) => {
+      prompt(e);
+    });
 });
 
 function showData(myObj) {
