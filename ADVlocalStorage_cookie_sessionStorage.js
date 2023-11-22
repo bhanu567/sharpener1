@@ -50,8 +50,8 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function showData(myObj) {
-  let myObj_serialized = JSON.stringify(myObj);
-  localStorage.setItem(myObj.email, myObj_serialized);
+  // let myObj_serialized = JSON.stringify(myObj);
+  // localStorage.setItem(myObj.email, myObj_serialized);
   var list = document.createElement("ul");
   var lists = document.createElement("li");
 
