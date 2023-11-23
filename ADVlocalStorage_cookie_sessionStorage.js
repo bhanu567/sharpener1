@@ -58,7 +58,7 @@ function showData(myObj) {
   //Adding delete Button
   var del = document.createElement("button");
   del.innerHTML = "DELETE";
-  lists.innerText = `${myObj.name} - ${myObj.email} - ${myObj.phonenumber}`;
+  lists.innerText = `${myObj._id} - ${myObj.name} - ${myObj.email} - ${myObj.phonenumber}`;
   lists.appendChild(del);
   list.appendChild(lists);
   document.getElementById("x1").appendChild(list);
@@ -70,8 +70,21 @@ function showData(myObj) {
 
   //Adding Delete Functionality
   del.addEventListener("click", () => {
+    var datas = del.parentElement.outerText;
     del.parentElement.parentElement.remove();
-    localStorage.removeItem(myObj.email);
+    var dt = datas.split(" - ");
+
+    var compurl ="";
+    axios
+      .delete("https://crudcrud.com/api/531c0e32b38243ecbaecf4196816cfec/registrationlist/" +dt[0])
+      .then(() => {
+        alert("Succesfuly deleted");
+      })
+      .catch((e) => {
+        alert(e);
+      });
+
+    // localStorage.removeItem(myObj.email);
   });
 
   //Adding Edit Functionality
@@ -79,7 +92,9 @@ function showData(myObj) {
     document.getElementsByTagName("input")[0].value = myObj.name;
     document.getElementsByTagName("input")[1].value = myObj.email;
     document.getElementsByTagName("input")[2].value = myObj.phonenumber;
-    localStorage.removeItem(myObj.email);
+    // localStorage.removeItem(myObj.email);
     Edit.parentElement.parentElement.remove();
   });
 }
+
+//.then can't be used with setTimeout, as it is not a Promises
